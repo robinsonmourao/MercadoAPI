@@ -1,4 +1,4 @@
-package modelo;
+package com.example.mercado.modelo;
 
 import jakarta.persistence.*;
 
@@ -10,11 +10,11 @@ public class Produto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long id;
+    private Long id;
 
-    public String descricao;
-    public double preco;
-    public String marca;
+    private String descricao;
+    private double preco;
+    private String marca;
 
     public Long getId() {
         return id;

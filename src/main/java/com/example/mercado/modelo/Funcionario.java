@@ -1,18 +1,19 @@
-package modelo;
+package com.example.mercado.modelo;
 
-import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.io.Serializable;
 
-@Entity
-@Table
-public class Cliente implements Serializable {
+public class Funcionario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
     private String CPF;
+    private String cargo;
 
     public Long getId() {
         return id;
@@ -38,4 +39,11 @@ public class Cliente implements Serializable {
         this.CPF = CPF;
     }
 
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
 }
