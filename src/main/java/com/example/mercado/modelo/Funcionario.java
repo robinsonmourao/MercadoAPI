@@ -1,9 +1,6 @@
 package com.example.mercado.modelo;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import javax.persistence.*;
 import java.io.Serializable;
 
 public class Funcionario implements Serializable {

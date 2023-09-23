@@ -1,7 +1,6 @@
 package com.example.mercado.modelo;
 
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
