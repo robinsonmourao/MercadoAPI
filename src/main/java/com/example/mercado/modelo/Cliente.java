@@ -10,9 +10,15 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "nome")
     private String nome;
-    private String CPF;
+    @Column(name = "cpf")
+    private String cpf;
 
+    public Cliente (String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+    }
     public Long getId() {
         return id;
     }
@@ -29,12 +35,12 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String CPF) {
+        this.cpf = CPF;
     }
 
 }
