@@ -15,6 +15,10 @@ public class Cliente implements Serializable {
     @Column(name = "cpf")
     private String cpf;
 
+    public Cliente () {
+        this.nome = "É nome de cliente";
+        this.cpf = "É cpf de cliente";
+    }
     public Cliente (String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
