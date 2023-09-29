@@ -38,21 +38,24 @@ public class ClienteService {
         return cliente;
     }
 
-    public Cliente atualizarCliente (String novoNome, String cpf, String novoCpf) {
+    public Cliente atualizarCliente (String cpf, String novoNome, String novoCpf) {
 
         Optional<Cliente> clienteOptional = clienteRepository.findByCpf(cpf);
 
         if (clienteOptional.isEmpty()){
             throw new IllegalArgumentException("O usuário com CPF: " + cpf + " não foi encontrado!");
         }
-        Cliente cliente = clienteOptional.get();
-        cliente.setNome(novoNome);
-        cliente.setCpf(novoCpf);
+        Cliente clienteAnterior = clienteOptional.get();
+        Cliente novoCliente = new Cliente(novoNome, novoCpf);
 
-        clienteRepository.deleteByCpf(cpf);
-        clienteRepository.save(cliente);
+        if (clienteAnterior.getCpf().equals(novoCliente.getCpf())) {
+            throw new RuntimeException("O cpf do cliente novo: " + novoCliente.getCpf()
+                    + " é o mesmo cpf do cliente atual: " + clienteAnterior.getCpf());
+        }
+        clienteRepository.delete(clienteAnterior);
+        clienteRepository.save(novoCliente);
 
-        return cliente;
+        return novoCliente;
     }
 
     public Cliente deletarCliente (String cpf) {
@@ -63,7 +66,7 @@ public class ClienteService {
             throw new IllegalArgumentException("O usuário com CPF: " + cpf + " não foi encontrado!");
         }
         Cliente cliente = clienteOptional.get();
-        clienteRepository.deleteByCpf(cpf);
+        clienteRepository.delete(cliente);
 
         return cliente;
     }
