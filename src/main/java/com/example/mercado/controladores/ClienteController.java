@@ -14,44 +14,48 @@ public class ClienteController {
     @Autowired
     ClienteService clienteService;
 
-    @PostMapping("/clients")
+    @PostMapping("/clientes")
     public ResponseEntity<Object> create(@RequestBody Cliente cliente) {
-        try{
-            return new ResponseEntity<Object>(clienteService.criarCliente(cliente.getNome(), cliente.getCpf()), HttpStatus.CREATED);
+        try{ // Fluxo de sucesso
+            return new ResponseEntity<Object>(
+                    clienteService.criarCliente(cliente.getNome(), cliente.getCpf()), HttpStatus.CREATED
+            );
         }
-        catch (IllegalArgumentException exception){
+        catch (IllegalArgumentException exception){ // Fluxo de falha
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
         }
     }
-    @GetMapping("/clients/{cpf}")
+    @GetMapping("/clientes/{cpf}")
     public ResponseEntity<Object> read(@PathVariable String cpf) {
-        try{
-            return new ResponseEntity<Object>(clienteService.buscarCliente(cpf), HttpStatus.OK);
-        }
-        catch (IllegalArgumentException exception){
+        try{ // Fluxo de sucesso
+            return new ResponseEntity<Object>(
+                    clienteService.buscarCliente(cpf), HttpStatus.OK
+            );
+        } catch (IllegalArgumentException exception){ // Fluxo de falha
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
         }
     }
 
-    @PutMapping("/clients/{cpf}")
-    public ResponseEntity<Object> update(@PathVariable String cpf, @RequestBody Cliente cliente) {
-        try{
-            return new ResponseEntity<Object>(clienteService.atualizarCliente(cpf, cliente.getNome(), cliente.getCpf()), HttpStatus.OK);
-        }
-        catch (IllegalArgumentException exception){
+    @PutMapping("/clientes/{cpf}")
+    public ResponseEntity<Object> update(@PathVariable String cpf, @RequestBody Cliente novoCliente) {
+        try{ // Fluxo de sucesso
+            return new ResponseEntity<Object>(
+                    clienteService.atualizarCliente(cpf, novoCliente.getNome(), novoCliente.getCpf()), HttpStatus.OK
+            );
+        } catch (IllegalArgumentException exception){ // Fluxo de falha
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
-        }
-        catch (RuntimeException exception){
+        } catch (RuntimeException exception){ // Fluxo de falha 2
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
         }
     }
 
-    @DeleteMapping("/clients/{cpf}")
+    @DeleteMapping("/clientes/{cpf}")
     public ResponseEntity<Object> delete(@PathVariable String cpf) {
-        try{
-            return new ResponseEntity<Object>(clienteService.deletarCliente(cpf), HttpStatus.OK);
-        }
-        catch (IllegalArgumentException exception){
+        try{ // Fluxo de sucesso
+            return new ResponseEntity<Object>(
+                    clienteService.deletarCliente(cpf), HttpStatus.OK
+            );
+        } catch (IllegalArgumentException exception){ // Fluxo de falha
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
         }
     }
