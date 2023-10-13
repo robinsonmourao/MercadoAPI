@@ -8,10 +8,23 @@ public class Funcionario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column
     private String nome;
-    private String CPF;
+    @Column
+    private String cpf;
+    @Column
     private String cargo;
 
+    public Funcionario () {
+        this.nome = "É nome de funcionario";
+        this.cpf = "É cpf de funcionario";
+        this.cargo = "É o cargo do funcionario";
+    }
+    public Funcionario (String nome, String cpf, String cargo) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.cargo = cargo;
+    }
     public Long getId() {
         return id;
     }
@@ -28,12 +41,12 @@ public class Funcionario implements Serializable {
         this.nome = nome;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String CPF) {
+        this.cpf = CPF;
     }
 
     public String getCargo() {

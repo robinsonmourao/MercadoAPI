@@ -31,7 +31,7 @@ public class ClienteService {
         Optional<Cliente> clienteOptional = clienteRepository.findByCpf(cpf);
 
         if (clienteOptional.isEmpty()){
-			throw new IllegalArgumentException("O usuário com CPF: " + cpf + " não foi encontrado!");
+			throw new IllegalArgumentException("O cliente com CPF: " + cpf + " não foi encontrado!");
 		}
         Cliente cliente = clienteOptional.get();
 
@@ -43,7 +43,7 @@ public class ClienteService {
         Optional<Cliente> clienteOptional = clienteRepository.findByCpf(cpf);
 
         if (clienteOptional.isEmpty()){
-            throw new IllegalArgumentException("O usuário com CPF: " + cpf + " não foi encontrado!");
+            throw new IllegalArgumentException("O cliente com CPF: " + cpf + " não foi encontrado!");
         }
         Cliente clienteAnterior = clienteOptional.get();
         Cliente novoCliente = new Cliente(novoNome, novoCpf);
@@ -63,7 +63,7 @@ public class ClienteService {
         Optional<Cliente> clienteOptional = clienteRepository.findByCpf(cpf);
 
         if (clienteOptional.isEmpty()){
-            throw new IllegalArgumentException("O usuário com CPF: " + cpf + " não foi encontrado!");
+            throw new IllegalArgumentException("O cliente com CPF: " + cpf + " não foi encontrado!");
         }
         Cliente cliente = clienteOptional.get();
         clienteRepository.delete(cliente);
