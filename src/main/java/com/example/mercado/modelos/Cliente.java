@@ -10,9 +10,9 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     private String nome;
-    @Column(name = "cpf")
+    @Column(name = "cpf", unique = true, nullable = false)
     private String cpf;
 
     public Cliente () {
